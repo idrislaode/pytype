@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 215 28% 12%;
+    --foreground: 210 20% 95%;
+
+    --card: 215 25% 15%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 215 25% 15%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Python Blue */
+    --primary: 210 65% 40%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 20% 22%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 215 18% 20%;
+    --muted-foreground: 210 15% 55%;
+
+    /* Python Yellow */
+    --accent: 47 100% 62%;
+    --accent-foreground: 215 28% 12%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
+    --ring: 47 100% 62%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --code-bg: 215 28% 8%;
+    --code-line: 215 20% 15%;
+    --code-cursor: 47 100% 62%;
+    
+    /* Syntax highlighting */
+    --syntax-keyword: 280 80% 70%;
+    --syntax-string: 35 90% 60%;
+    --syntax-comment: 120 30% 50%;
+    --syntax-number: 200 80% 65%;
+    --syntax-function: 47 100% 62%;
+    --syntax-variable: 210 80% 70%;
+    --syntax-operator: 350 70% 65%;
+
+    /* Python theme gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210, 65%, 40%) 0%, hsl(210, 70%, 35%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(47, 100%, 62%) 0%, hsl(40, 95%, 55%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(215, 28%, 12%) 0%, hsl(215, 30%, 8%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(47, 100%, 62%, 0.3);
+    --shadow-card: 0 4px 20px hsl(0, 0%, 0%, 0.4);
+    --shadow-blue: 0 0 30px hsl(210, 65%, 40%, 0.3);
+
+    --sidebar-background: 215 25% 15%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 210 65% 40%;
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 215 20% 22%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 25%;
+    --sidebar-ring: 47 100% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: var(--gradient-dark);
+    min-height: 100vh;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .code-editor {
+    @apply font-mono text-sm leading-relaxed;
+    background: hsl(var(--code-bg));
+  }
+
+  .syntax-keyword {
+    color: hsl(var(--syntax-keyword));
+  }
+
+  .syntax-string {
+    color: hsl(var(--syntax-string));
+  }
+
+  .syntax-comment {
+    color: hsl(var(--syntax-comment));
+    font-style: italic;
+  }
+
+  .syntax-number {
+    color: hsl(var(--syntax-number));
+  }
+
+  .syntax-function {
+    color: hsl(var(--syntax-function));
+  }
+
+  .syntax-variable {
+    color: hsl(var(--syntax-variable));
+  }
+
+  .syntax-operator {
+    color: hsl(var(--syntax-operator));
+  }
+
+  .char-correct {
+    @apply text-primary;
+  }
+
+  .char-incorrect {
+    @apply text-destructive bg-destructive/20;
+  }
+
+  .char-current {
+    @apply border-l-2 border-primary animate-pulse;
+  }
+
+  .char-pending {
+    @apply text-muted-foreground;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow-button {
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@layer utilities {
+  .animate-typing-cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
